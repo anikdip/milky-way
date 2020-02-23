@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="fragments/header :: head"> </th:block>
+</head>
+<body>
+<div class="container">
+    <br>
+    <nav>  <th:block th:replace="fragments/nav :: nav"></th:block>   </nav>
+    <br>
+
+
+
+
+    <h1>ALL Campaign LIST :) </h1>
+    <br>
+    <table class="table table-striped">
+        <thead>
+        <th scope="row">#ID</th>
+        <th scope="row">Campaign Title</th>
+        <th scope="row">Message Body</th>
+        <th scope="row">Status</th>
+        <th scope="row">Update</th>
+        <th scope="row">Delete</th>
+        </thead>
+        <tbody>
+        <tr th:each="campaign : ${campaignLists}">
+            <td th:text="${campaign.id}"></td>
+            <td th:text="${campaign.campaign_title}"></td>
+            <td th:text="${campaign.message_body}"></td>
+            <td th:text="${campaign.status}"></td>
+            <td>
+                <a class="btn btn-primary" th:href="@{/updateCampaign/__${campaign.id}__}"  role="button" >Update</a>
+            </td>
+            <td>
+                <a class="btn btn-primary" th:href="@{/deleteCampaign/__${campaign.id}__}" role="button" >Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <br>
+    <a class="btn btn-primary" th:href="@{/addCampaignPage}"  role="button" >Add New Canpaign</a>
+    <br>
+
+    <nav aria-label="...">
+        <br>
+        <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+                <span class="page-link">Previous</span>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item active" aria-current="page">
+      <span class="page-link">
+        2
+        <span class="sr-only">(current)</span>
+      </span>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+            </li>
+        </ul>
+    </nav>
+
+
+    <footer>
+        <th:block th:include="fragments/footer :: footer"></th:block>
+    </footer>
+
+</div>
+</body>
+</html>
